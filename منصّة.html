@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>منصّة | وجهتك الرقمية الشاملة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f7fb; --card:#ffffff; --text:#1e2235; --muted:#6b7280;
+  --primary:#6d5ef2; --primary2:#8b5cf6; --accent:#10b981; --accent2:#06b6d4;
+  --border:#e5e7eb; --shadow:0 10px 30px rgba(30,34,53,.08); --radius:16px;
+  --grad:linear-gradient(135deg,#6d5ef2,#8b5cf6 55%,#06b6d4);
+}
+[data-theme="dark"]{
+  --bg:#0f1220; --card:#181c30; --text:#eef0fb; --muted:#9aa1b5;
+  --border:#2a2f4a; --shadow:0 10px 30px rgba(0,0,0,.35);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Cairo',Tahoma,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;transition:background .3s,color .3s}
+a{text-decoration:none;color:inherit}
+img{max-width:100%}
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+.btn{border:none;cursor:pointer;font-family:inherit;font-weight:700;border-radius:12px;padding:12px 26px;font-size:15px;transition:.25s;display:inline-flex;align-items:center;gap:8px}
+.btn-primary{background:var(--grad);color:#fff;box-shadow:0 8px 20px rgba(109,94,242,.35)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(109,94,242,.45)}
+.btn-ghost{background:transparent;border:2px solid var(--border);color:var(--text)}
+.btn-ghost:hover{border-color:var(--primary);color:var(--primary)}
+.btn-sm{padding:8px 16px;font-size:13px;border-radius:10px}
+.badge{display:inline-flex;align-items:center;gap:6px;background:var(--grad);color:#fff;padding:6px 14px;border-radius:999px;font-size:13px;font-weight:700}
+.section{padding:70px 0}
+.section-head{text-align:center;max-width:640px;margin:0 auto 45px}
+.section-head h2{font-size:34px;font-weight:900;margin:12px 0 10px}
+.section-head p{color:var(--muted);font-size:17px}
+.eyebrow{color:var(--primary);font-weight:800;letter-spacing:1px;font-size:14px}
+/* ===== Header ===== */
+header{position:sticky;top:0;z-index:100;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.nav{display:flex;align-items:center;gap:24px;padding:14px 0}
+.logo{display:flex;align-items:center;gap:10px;font-size:23px;font-weight:900}
+.logo-mark{width:42px;height:42px;border-radius:12px;background:var(--grad);display:grid;place-items:center;color:#fff;font-size:22px;box-shadow:0 6px 16px rgba(109,94,242,.4)}
+.nav-links{display:flex;gap:6px;margin-inline-start:auto}
+.nav-links a{padding:9px 16px;border-radius:10px;font-weight:700;font-size:15px;color:var(--muted);transition:.2s}
+.nav-links a:hover,.nav-links a.active{color:var(--text);background:var(--border)}
+.nav-actions{display:flex;align-items:center;gap:10px}
+.icon-btn{width:42px;height:42px;border-radius:12px;border:1px solid var(--border);background:var(--card);cursor:pointer;display:grid;place-items:center;color:var(--text);position:relative;transition:.2s}
+.icon-btn:hover{border-color:var(--primary);color:var(--primary)}
+.cart-count{position:absolute;top:-6px;left:-6px;background:#ef4444;color:#fff;font-size:11px;font-weight:800;min-width:19px;height:19px;border-radius:999px;display:grid;place-items:center;padding:0 4px}
+.menu-toggle{display:none}
+/* ===== Hero ===== */
+.hero{padding:70px 0 50px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:auto -10% -40% auto;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(109,94,242,.16),transparent 65%);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center;position:relative}
+.hero h1{font-size:48px;font-weight:900;line-height:1.35;margin:18px 0}
+.hero h1 span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--muted);font-size:18px;margin-bottom:28px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+.hero-stats{display:flex;gap:34px;margin-top:38px;flex-wrap:wrap}
+.stat b{font-size:26px;font-weight:900;display:block;color:var(--text)}
+.stat span{color:var(--muted);font-size:14px}
+.hero-visual{position:relative;min-height:380px}
+.hero-card{position:absolute;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px;border:1px solid var(--border);display:flex;align-items:center;gap:14px;animation:float 5s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.hc-1{top:8%;right:6%;width:260px}
+.hc-2{bottom:14%;right:30%;width:250px;animation-delay:1.2s}
+.hc-3{top:42%;left:2%;width:200px;animation-delay:2.2s}
+.hc-ico{width:50px;height:50px;border-radius:13px;display:grid;place-items:center;font-size:24px;flex-shrink:0}
+.hc-1 .hc-ico{background:#ede9fe;color:#7c3aed}
+.hc-2 .hc-ico{background:#d1fae5;color:#059669}
+.hc-3 .hc-ico{background:#cffafe;color:#0891b2}
+.hc-txt b{font-size:15px}
+.hc-txt span{font-size:13px;color:var(--muted)}
+.chart-mini{margin-top:10px;display:flex;align-items:flex-end;gap:5px;height:44px}
+.chart-mini i{flex:1;background:var(--grad);border-radius:4px 4px 0 0;opacity:.85}
+/* ===== Features ===== */
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.feat{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:28px;transition:.3s}
+.feat:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:var(--primary)}
+.feat-ico{width:56px;height:56px;border-radius:15px;display:grid;place-items:center;font-size:26px;margin-bottom:16px}
+.feat h3{font-size:19px;margin-bottom:8px}
+.feat p{color:var(--muted);font-size:14.5px}
+/* ===== Products ===== */
+.toolbar{display:flex;gap:12px;align-items:center;margin-bottom:28px;flex-wrap:wrap}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{padding:8px 18px;border-radius:999px;border:1px solid var(--border);background:var(--card);cursor:pointer;font-family:inherit;font-size:14px;font-weight:700;color:var(--muted);transition:.2s}
+.chip.active,.chip:hover{background:var(--grad);color:#fff;border-color:transparent}
+.search-box{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--border);padding:10px 16px;border-radius:12px;flex:1;min-width:220px}
+.search-box input{border:none;outline:none;background:transparent;font-family:inherit;font-size:14px;color:var(--text);width:100%}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:.3s;display:flex;flex-direction:column}
+.card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.card-img{height:170px;display:grid;place-items:center;font-size:52px;position:relative}
+.card-img .tag{position:absolute;top:12px;right:12px;background:rgba(0,0,0,.55);color:#fff;font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px;backdrop-filter:blur(4px)}
+.card-body{padding:16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card-body h4{font-size:15.5px;line-height:1.5}
+.rating{color:#f59e0b;font-size:13px}
+.rating span{color:var(--muted);margin-inline-start:5px}
+.price-row{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:8px}
+.price{font-weight:900;font-size:19px;color:var(--primary)}
+.price small{color:var(--muted);font-weight:700;font-size:12px;text-decoration:line-through;margin-inline-start:6px}
+.add-btn{width:38px;height:38px;border-radius:11px;border:none;background:var(--grad);color:#fff;cursor:pointer;font-size:19px;display:grid;place-items:center;transition:.2s}
+.add-btn:hover{transform:scale(1.12)}
+/* ===== Courses ===== */
+.course-card{flex-direction:row;align-items:stretch}
+.course-img{width:190px;min-height:170px;display:grid;place-items:center;font-size:48px;position:relative}
+.course-body{padding:18px;display:flex;flex-direction:column;gap:9px;flex:1}
+.meta{display:flex;gap:14px;color:var(--muted);font-size:13px;flex-wrap:wrap}
+.meta span{display:inline-flex;align-items:center;gap:5px}
+.enroll-btn{margin-inline-start:auto}
+.progress{height:8px;background:var(--border);border-radius:99px;overflow:hidden}
+.progress i{display:block;height:100%;background:var(--grad);border-radius:99px}
+/* ===== Blog ===== */
+.blog-card .card-img{height:150px}
+/* ===== Testimonials ===== */
+.testi{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:26px}
+.testi .stars{color:#f59e0b;margin-bottom:12px}
+.testi p{color:var(--text);margin-bottom:16px;font-size:15px}
+.t-user{display:flex;align-items:center;gap:12px}
+.avatar{width:46px;height:46px;border-radius:50%;background:var(--grad);color:#fff;display:grid;place-items:center;font-weight:900}
+.t-user b{font-size:14.5px;display:block}
+.t-user span{font-size:12.5px;color:var(--muted)}
+/* ===== CTA ===== */
+.cta{background:var(--grad);border-radius:24px;padding:55px;text-align:center;color:#fff;position:relative;overflow:hidden}
+.cta h2{font-size:32px;font-weight:900;margin-bottom:12px}
+.cta p{opacity:.9;margin-bottom:26px;font-size:17px}
+.cta .btn{background:#fff;color:var(--primary)}
+/* ===== Footer ===== */
+footer{background:var(--card);border-top:1px solid var(--border);padding:50px 0 30px;margin-top:60px}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;margin-bottom:34px}
+.foot-grid h4{font-size:17px;margin-bottom:14px}
+.foot-grid a{display:block;color:var(--muted);padding:5px 0;font-size:14px;transition:.2s}
+.foot-grid a:hover{color:var(--primary)}
+.foot-bottom{border-top:1px solid var(--border);padding-top:20px;display:flex;justify-content:space-between;color:var(--muted);font-size:13.5px;flex-wrap:wrap;gap:10px}
+/* ===== Page sections ===== */
+.page{display:none}
+.page.active{display:block;animation:fadein .35s ease}
+@keyframes fadein{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.page-title{padding:36px 0 8px}
+.page-title h1{font-size:32px;font-weight:900}
+.page-title p{color:var(--muted)}
+/* ===== Dashboard ===== */
+.dash-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-bottom:26px}
+.dstat{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:22px;display:flex;gap:16px;align-items:center}
+.dstat-ico{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;font-size:24px}
+.dstat b{font-size:24px;font-weight:900;display:block}
+.dstat span{color:var(--muted);font-size:13px}
+.dstat i{font-style:normal;font-size:12px;font-weight:800;padding:3px 9px;border-radius:99px}
+.up{background:#d1fae5;color:#059669}.down{background:#fee2e2;color:#dc2626}
+.dash-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:20px}
+.panel{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px}
+.panel h3{font-size:18px;margin-bottom:18px}
+.bars{display:flex;align-items:flex-end;gap:10px;height:200px}
+.bars .bar{flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;justify-content:flex-end;height:100%}
+.bars .bar i{width:100%;max-width:40px;background:var(--grad);border-radius:8px 8px 0 0;opacity:.88;transition:.4s;min-height:4px}
+.bars .bar span{font-size:12px;color:var(--muted)}
+table{width:100%;border-collapse:collapse}
+th,td{padding:13px 12px;text-align:right;font-size:14px;border-bottom:1px solid var(--border)}
+th{color:var(--muted);font-weight:800;font-size:13px}
+tbody tr:hover{background:color-mix(in srgb,var(--primary) 5%,transparent)}
+.status{font-size:12px;font-weight:800;padding:4px 12px;border-radius:99px}
+.st-ok{background:#d1fae5;color:#059669}.st-wait{background:#fef3c7;color:#d97706}.st-cancel{background:#fee2e2;color:#dc2626}
+/* ===== Cart drawer ===== */
+.drawer{position:fixed;inset:0;z-index:200;visibility:hidden;pointer-events:none;transition:.3s}
+.drawer.open{visibility:visible;pointer-events:auto}
+.drawer .backdrop{position:absolute;inset:0;background:rgba(0,0,0,.45)}
+.drawer .sheet{position:absolute;top:0;bottom:0;inset-inline-start:auto;inset-inline-end:0;width:min(420px,92vw);background:var(--bg);box-shadow:-10px 0 40px rgba(0,0,0,.2);transform:translateX(0);transition:.35s;display:flex;flex-direction:column}
+[dir="rtl"] .drawer .sheet{transform:translateX(100%)}
+.drawer.open .sheet{transform:translateX(0)!important}
+.sheet-head{display:flex;align-items:center;justify-content:space-between;padding:20px 22px;border-bottom:1px solid var(--border)}
+.sheet-body{flex:1;overflow-y:auto;padding:18px 22px;display:flex;flex-direction:column;gap:14px}
+.cart-item{display:flex;gap:13px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px}
+.cart-item .ci-img{width:58px;height:58px;border-radius:12px;display:grid;place-items:center;font-size:26px;flex-shrink:0}
+.cart-item b{font-size:14px;display:block;line-height:1.4}
+.cart-item .ci-price{color:var(--primary);font-weight:900;font-size:14px}
+.qty{display:flex;align-items:center;gap:9px;margin-top:6px}
+.qty button{width:26px;height:26px;border-radius:8px;border:1px solid var(--border);background:var(--card);cursor:pointer;font-weight:900;color:var(--text)}
+.ci-rm{margin-inline-start:auto;background:none;border:none;cursor:pointer;color:var(--muted);font-size:16px;height:fit-content}
+.sheet-foot{padding:18px 22px;border-top:1px solid var(--border);background:var(--card)}
+.total-row{display:flex;justify-content:space-between;font-weight:900;font-size:18px;margin-bottom:14px}
+.empty-cart{text-align:center;color:var(--muted);padding:50px 0;font-size:44px}
+/* ===== Modal ===== */
+.modal{position:fixed;inset:0;z-index:300;display:none;place-items:center;background:rgba(0,0,0,.5)}
+.modal.open{display:grid}
+.modal-card{background:var(--card);border-radius:20px;width:min(440px,92vw);padding:34px;position:relative;animation:pop .3s ease}
+@keyframes pop{from{transform:scale(.92);opacity:0}to{transform:scale(1);opacity:1}}
+.modal-card h2{font-size:24px;font-weight:900;margin-bottom:6px}
+.modal-card .sub{color:var(--muted);font-size:14px;margin-bottom:22px}
+.field{margin-bottom:15px}
+.field label{display:block;font-size:13.5px;font-weight:700;margin-bottom:6px}
+.field input{width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:11px;background:var(--bg);font-family:inherit;font-size:14px;color:var(--text);outline:none;transition:.2s}
+.field input:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(109,94,242,.15)}
+.modal-close{position:absolute;top:16px;left:16px;background:none;border:none;font-size:20px;cursor:pointer;color:var(--muted)}
+.switch-link{text-align:center;margin-top:16px;font-size:14px;color:var(--muted)}
+.switch-link button{background:none;border:none;color:var(--primary);font-weight:800;cursor:pointer;font-family:inherit;font-size:14px}
+/* ===== Toast ===== */
+#toasts{position:fixed;bottom:24px;left:24px;z-index:400;display:flex;flex-direction:column;gap:10px}
+.toast{background:var(--card);border-inline-start:4px solid var(--accent);border-radius:12px;box-shadow:var(--shadow);padding:13px 18px;font-weight:700;font-size:14px;animation:slidein .3s ease}
+@keyframes slidein{from{transform:translateX(-40px);opacity:0}to{transform:none;opacity:1}}
+/* ===== Responsive ===== */
+@media(max-width:1024px){.grid{grid-template-columns:repeat(3,1fr)}.features,.dash-stats{grid-template-columns:repeat(2,1fr)}.dash-grid{grid-template-columns:1fr}}
+@media(max-width:768px){
+  .nav-links{position:fixed;inset:70px 0 auto 0;background:var(--bg);flex-direction:column;padding:16px;border-bottom:1px solid var(--border);display:none;z-index:99}
+  .nav-links.open{display:flex}
+  .menu-toggle{display:grid}
+  .hero-grid{grid-template-columns:1fr}
+  .hero h1{font-size:34px}
+  .hero-visual{display:none}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .features{grid-template-columns:1fr}
+  .course-card{flex-direction:column}.course-img{width:100%;height:150px}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .bars{height:150px}
+}
+@media(max-width:480px){.grid,.dash-stats{grid-template-columns:1fr}.hero-stats{gap:20px}}
+</style>
+</head>
+<body>
+<div id="toasts"></div>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <div class="container nav">
+    <a href="#" class="logo" data-nav="home"><span class="logo-mark">م</span>منصّة</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#" data-nav="home" class="active">الرئيسية</a>
+      <a href="#" data-nav="shop">المتجر</a>
+      <a href="#" data-nav="courses">الدورات</a>
+      <a href="#" data-nav="blog">المدونة</a>
+      <a href="#" data-nav="dashboard">لوحة التحكم</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeToggle" title="الوضع الليلي">🌙</button>
+      <button class="icon-btn" id="cartBtn" title="سلة التسوق">🛒<span class="cart-count" id="cartCount" style="display:none">0</span></button>
+      <button class="btn btn-primary btn-sm" id="authBtn">تسجيل الدخول</button>
+      <button class="icon-btn menu-toggle" id="menuToggle">☰</button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== الصفحة الرئيسية ===== -->
+<section class="page active" id="page-home">
+  <div class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="badge">🚀 منصّة عربية متكاملة</span>
+        <h1>منصّة واحدة لكل شيء:<br>تسوّق، تعلّم، <span>وابنِ حضورك الرقمي</span></h1>
+        <p>وجهتك الشاملة للتسوق الذكي والدورات التدريبية والمحتوى الحصري — بتجربة عربية سلسة وتصميم عصري يعمل على كل الأجهزة.</p>
+        <div class="hero-cta">
+          <a href="#" class="btn btn-primary" data-nav="shop">🛍️ ابدأ التسوق</a>
+          <a href="#" class="btn btn-ghost" data-nav="courses">📚 تصفح الدورات</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><b>+12 ألف</b><span>عميل سعيد</span></div>
+          <div class="stat"><b>+85</b><span>دورة تدريبية</span></div>
+          <div class="stat"><b>4.9/5</b><span>متوسط التقييم</span></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card hc-1">
+          <div class="hc-ico">🛒</div>
+          <div class="hc-txt"><b>طلب جديد وصل!</b><br><span>سماعات لاسلكية — 249 ر.س</span></div>
+        </div>
+        <div class="hero-card hc-2">
+          <div class="hc-ico">📈</div>
+          <div class="hc-txt"><b>مبيعات اليوم</b><br><span><b style="color:var(--accent)">+18%</b> مقارنة بالأمس</span>
+            <div class="chart-mini"><i style="height:35%"></i><i style="height:55%"></i><i style="height:40%"></i><i style="height:70%"></i><i style="height:60%"></i><i style="height:90%"></i></div>
+          </div>
+        </div>
+        <div class="hero-card hc-3">
+          <div class="hc-ico">✅</div>
+          <div class="hc-txt"><b>تم إتمام الدورة</b><br><span>شهادة إتمام +97% من الطلاب</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="section" style="padding-top:30px">
+      <div class="section-head">
+        <div class="eyebrow">لماذا منصّة؟</div>
+        <h2>كل ما تحتاجه في مكان واحد</h2>
+        <p>بنينا منصّة عربية بالكامل لتوفر لك تجربة رقمية متكاملة وسهلة</p>
+      </div>
+      <div class="features">
+        <div class="feat"><div class="feat-ico" style="background:#ede9fe;color:#7c3aed">🛍️</div><h3>متجر متكامل</h3><p>منتجات متنوعة، عروض حصرية، سلة تسوق فورية، وتتبع طلباتك بسهولة.</p></div>
+        <div class="feat"><div class="feat-ico" style="background:#d1fae5;color:#059669">🎓</div><h3>دورات تدريبية</h3><p>محتوى تعليمي احترافي مع تتبع تقدمك وشهادات إتمام موثّقة.</p></div>
+        <div class="feat"><div class="feat-ico" style="background:#cffafe;color:#0891b2">📊</div><h3>لوحة تحكم ذكية</h3><p>إحصائيات حية عن مبيعاتك، طلباتك، وأداء منصتك في لمحة واحدة.</p></div>
+        <div class="feat"><div class="feat-ico" style="background:#fef3c7;color:#d97706">✍️</div><h3>مدونة غنية</h3><p>مقالات وأدلة عملية تصلك بأحدث الاتجاهات والأفكار الملهمة.</p></div>
+        <div class="feat"><div class="feat-ico" style="background:#fce7f3;color:#db2777">🌙</div><h3>وضع ليلي مريح</h3><p>بدّل بين المظهر الفاتح والداكن بضغطة واحدة لإراحة عينيك.</p></div>
+        <div class="feat"><div class="feat-ico" style="background:#e0e7ff;color:#4f46e5">📱</div><h3>متجاوب بالكامل</h3><p>تجربة مثالية على الجوال والتابلت والحاسوب — في أي وقت وأي مكان.</p></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-head">
+        <div class="eyebrow">منتجات مميزة</div>
+        <h2>الأكثر مبيعاً هذا الأسبوع</h2>
+        <p>تشكيلة مختارة بعناية تنال إعجاب عملائنا</p>
+      </div>
+      <div class="grid" id="featuredProducts"></div>
+      <div style="text-align:center;margin-top:32px"><a href="#" class="btn btn-ghost" data-nav="shop">تصفح كل المنتجات ←</a></div>
+    </div>
+
+    <div class="section">
+      <div class="section-head">
+        <div class="eyebrow">ماذا يقول عملاؤنا؟</div>
+        <h2>آراء حقيقية من مجتمعنا</h2>
+      </div>
+      <div class="grid" style="grid-template-columns:repeat(3,1fr)" id="testiGrid"></div>
+    </div>
+
+    <div class="section">
+      <div class="cta">
+        <h2>جاهز تبدأ رحلتك مع منصّة؟</h2>
+        <p>انضم إلى آلاف المستخدمين واستمتع بتجربة رقمية عربية متكاملة</p>
+        <button class="btn" id="ctaJoin">🚀 إنشاء حساب مجاني</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== المتجر ===== -->
+<section class="page" id="page-shop">
+  <div class="container">
+    <div class="page-title">
+      <span class="eyebrow">المتجر</span>
+      <h1>تسوّق منتجاتنا</h1>
+      <p>كل ما تحتاجه من إلكترونيات، موضة، وأدوات منزلية بجودة مضمونة</p>
+    </div>
+    <div class="toolbar">
+      <div class="chips" id="shopChips">
+        <button class="chip active" data-cat="all">الكل</button>
+      </div>
+      <div class="search-box">🔍<input type="text" id="shopSearch" placeholder="ابحث عن منتج..."></div>
+    </div>
+    <div class="grid" id="shopGrid"></div>
+  </div>
+</section>
+
+<!-- ===== الدورات ===== -->
+<section class="page" id="page-courses">
+  <div class="container">
+    <div class="page-title">
+      <span class="eyebrow">التعليم</span>
+      <h1>دوراتنا التدريبية</h1>
+      <p>تعلّم مهارات جديدة من خبراء في مجالك — مع شهادات إتمام وشحن مجاني للمحتوى</p>
+    </div>
+    <div class="grid" style="grid-template-columns:repeat(2,1fr)" id="coursesGrid"></div>
+  </div>
+</section>
+
+<!-- ===== المدونة ===== -->
+<section class="page" id="page-blog">
+  <div class="container">
+    <div class="page-title">
+      <span class="eyebrow">المدونة</span>
+      <h1>مقالات وأفكار</h1>
+      <p>دليل يومي يبقيك على اطلاع بآخر الاتجاهات والنصائح العملية</p>
+    </div>
+    <div class="grid" id="blogGrid"></div>
+  </div>
+</section>
+
+<!-- ===== لوحة التحكم ===== -->
+<section class="page" id="page-dashboard">
+  <div class="container">
+    <div class="page-title">
+      <span class="eyebrow">لوحة التحكم</span>
+      <h1>نظرة عامة على منصّتك</h1>
+      <p>إحصائيات حية عن المبيعات والطلبات والمستخدمين — جاهزة لتطويرها إلى نظام خادم كامل</p>
+    </div>
+    <div class="dash-stats">
+      <div class="dstat"><div class="dstat-ico" style="background:#ede9fe;color:#7c3aed">💰</div><div><b>48,920 ر.س</b><span>إجمالي المبيعات</span><i class="up" style="display:inline-block;margin-top:6px">▲ +12.5%</i></div></div>
+      <div class="dstat"><div class="dstat-ico" style="background:#d1fae5;color:#059669">📦</div><div><b>1,284</b><span>الطلبات النشطة</span><i class="up" style="display:inline-block;margin-top:6px">▲ +8.2%</i></div></div>
+      <div class="dstat"><div class="dstat-ico" style="background:#cffafe;color:#0891b2">👥</div><div><b>12,047</b><span>المستخدمون المسجلون</span><i class="up" style="display:inline-block;margin-top:6px">▲ +5.1%</i></div></div>
+      <div class="dstat"><div class="dstat-ico" style="background:#fef3c7;color:#d97706">🎓</div><div><b>3,562</b><span>متعلّم نشط</span><i class="down" style="display:inline-block;margin-top:6px">▼ -1.4%</i></div></div>
+    </div>
+    <div class="dash-grid">
+      <div class="panel">
+        <h3>📈 المبيعات خلال آخر 7 أيام</h3>
+        <div class="bars" id="salesBars"></div>
+      </div>
+      <div class="panel">
+        <h3>🛒 أحدث الطلبات</h3>
+        <table>
+          <thead><tr><th>الطلب</th><th>العميل</th><th>الحالة</th></tr></thead>
+          <tbody id="ordersBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== سلة التسوق ===== -->
+<div class="drawer" id="cartDrawer">
+  <div class="backdrop" id="cartBackdrop"></div>
+  <div class="sheet">
+    <div class="sheet-head"><h3 style="font-size:20px">🛒 سلة التسوق</h3><button class="modal-close" id="closeCart" style="position:static">✕</button></div>
+    <div class="sheet-body" id="cartBody"></div>
+    <div class="sheet-foot">
+      <div class="total-row"><span>الإجمالي</span><span id="cartTotal">0 ر.س</span></div>
+      <button class="btn btn-primary" id="checkoutBtn" style="width:100%;justify-content:center">إتمام الطلب الآن</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== نوافذ الدخول والتسجيل ===== -->
+<div class="modal" id="authModal">
+  <div class="modal-card">
+    <button class="modal-close" id="closeAuth">✕</button>
+    <h2 id="authTitle">تسجيل الدخول</h2>
+    <p class="sub" id="authSub">أهلاً بعودتك! سجّل دخولك للمتابعة</p>
+    <form id="authForm">
+      <div class="field" id="nameField" style="display:none"><label>الاسم الكامل</label><input type="text" id="regName" placeholder="مثال: أحمد العلي"></div>
+      <div class="field"><label>البريد الإلكتروني</label><input type="email" id="authEmail" placeholder="you@example.com" required></div>
+      <div class="field"><label>كلمة المرور</label><input type="password" id="authPass" placeholder="••••••••" required></div>
+      <button class="btn btn-primary" type="submit" style="width:100%;justify-content:center" id="authSubmit">تسجيل الدخول</button>
+    </form>
+    <div class="switch-link" id="authSwitch">ليس لديك حساب؟ <button id="switchToReg">إنشاء حساب جديد</button></div>
+    <div class="switch-link" id="demoHint" style="font-size:12.5px;color:var(--muted);margin-top:6px">💡 جرّب حساب العرض: admin@demo.com / admin</div>
+  </div>
+</div>
+<script>
+/* ================= البيانات ================= */
+const PRODUCTS=[
+ {id:1,name:'سماعات لاسلكية برو',cat:'إلكترونيات',price:249,old:299,emoji:'🎧',rating:4.8,reviews:1240,bg:'linear-gradient(135deg,#ede9fe,#c4b5fd)'},
+ {id:2,name:'ساعة ذكية متطورة',cat:'إلكترونيات',price:499,old:649,emoji:'⌚',rating:4.7,reviews:856,bg:'linear-gradient(135deg,#d1fae5,#6ee7b7)'},
+ {id:3,name:'هاتف ذكي كاميرا 108MP',cat:'إلكترونيات',price:2499,old:0,emoji:'📱',rating:4.9,reviews:2103,bg:'linear-gradient(135deg,#cffafe,#67e8f9)'},
+ {id:4,name:'حقيبة جلدية أنيقة',cat:'موضة',price:189,old:249,emoji:'👜',rating:4.6,reviews:432,bg:'linear-gradient(135deg,#fef3c7,#fcd34d)'},
+ {id:5,name:'نظارة شمسية كلاسيك',cat:'موضة',price:129,old:0,emoji:'🕶️',rating:4.5,reviews:298,bg:'linear-gradient(135deg,#e0e7ff,#a5b4fc)'},
+ {id:6,name:'حذاء رياضي خفيف',cat:'موضة',price:259,old:329,emoji:'👟',rating:4.5,reviews:654,bg:'linear-gradient(135deg,#fce7f3,#f9a8d4)'},
+ {id:7,name:'مصباح ذكي ملون',cat:'المنزل',price:99,old:149,emoji:'💡',rating:4.4,reviews:389,bg:'linear-gradient(135deg,#fef9c3,#fde047)'},
+ {id:8,name:'طقم أواني جرانيت',cat:'المنزل',price:219,old:0,emoji:'🍳',rating:4.7,reviews:512,bg:'linear-gradient(135deg,#d1fae5,#a7f3d0)'},
+ {id:9,name:'كوب حراري بتصميم عصري',cat:'المنزل',price:79,old:0,emoji:'☕',rating:4.3,reviews:189,bg:'linear-gradient(135deg,#ffedd5,#fdba74)'},
+ {id:10,name:'لابتوب خفيف 14 بوصة',cat:'إلكترونيات',price:3299,old:3699,emoji:'💻',rating:4.8,reviews:967,bg:'linear-gradient(135deg,#ede9fe,#a78bfa)'},
+ {id:11,name:'لوحة مفاتيح ميكانيكية RGB',cat:'إلكترونيات',price:279,old:0,emoji:'⌨️',rating:4.6,reviews:741,bg:'linear-gradient(135deg,#e0e7ff,#818cf8)'},
+ {id:12,name:'ساعة كلاسيكية فاخرة',cat:'موضة',price:349,old:0,emoji:'⏱️',rating:4.7,reviews:205,bg:'linear-gradient(135deg,#fce7f3,#f472b6)'}
+];
+const COURSES=[
+ {id:1,name:'أساسيات البرمجة بلغة بايثون',emoji:'🐍',cat:'برمجة',weeks:6,lessons:24,rating:4.9,students:3412,progress:100,color:'#2563eb'},
+ {id:2,name:'التسويق الرقمي من الصفر',emoji:'📣',cat:'تسويق',weeks:4,lessons:18,rating:4.8,students:2890,progress:65,color:'#db2777'},
+ {id:3,name:'التصميم الجرافيكي الاحترافي',emoji:'🎨',cat:'تصميم',weeks:5,lessons:22,rating:4.7,students:1954,progress:30,color:'#ea580c'},
+ {id:4,name:'ريادة الأعمال وبناء المشاريع',emoji:'🚀',cat:'إدارة',weeks:4,lessons:16,rating:4.9,students:1677,progress:0,color:'#059669'},
+ {id:5,name:'الإنجليزية للأعمال',emoji:'💼',cat:'لغات',weeks:8,lessons:30,rating:4.8,students:2231,progress:0,color:'#7c3aed'},
+ {id:6,name:'الذكاء الاصطناعي التطبيقي',emoji:'🤖',cat:'تقنية',weeks:6,lessons:26,rating:5.0,students:4105,progress:0,color:'#0891b2'}
+];
+const POSTS=[
+ {id:1,title:'دليل التسوق الذكي لعام 2026',emoji:'🛒',cat:'تسوق',date:'2026-09-06',min:6,excerpt:'كيف تشتري بذكاء وتوفّر أكثر مع كل عملية شراء عبر الإنترنت.'},
+ {id:2,title:'كيف تتعلم البرمجة من الصفر؟',emoji:'💻',cat:'تقنية',date:'2026-09-03',min:8,excerpt:'خارطة طريق عملية ومجرّبة لتعلم البرمجة في 6 أشهر فقط.'},
+ {id:3,title:'10 أدوات إنتاجية لكل محترف',emoji:'⚡',cat:'إنتاجية',date:'2026-08-28',min:5,excerpt:'أفضل الأدوات التي ستوفر لك ساعات كل أسبوع وتنظّم يومك.'},
+ {id:4,title:'أسرار التسويق عبر السوشيال ميديا',emoji:'📱',cat:'تسويق',date:'2026-08-21',min:7,excerpt:'استراتيجيات نمو مجرّبة لبناء جمهور متفاعل من الصفر.'},
+ {id:5,title:'مستقبل الذكاء الاصطناعي في العمل',emoji:'🤖',cat:'تقنية',date:'2026-08-15',min:9,excerpt:'كيف ستغيّر أدوات الذكاء الاصطناعي طريقة عملنا خلال السنوات القادمة.'},
+ {id:6,title:'كيف تبني علامتك الشخصية',emoji:'🌟',cat:'تطوير ذاتي',date:'2026-08-10',min:6,excerpt:'خطوات عملية لبناء حضور قوي وموثوق في مجالك.'}
+];
+const TESTIMONIALS=[
+ {name:'أحمد العلي',role:'مدير منتجات',text:'منصّة غيّرت طريقة تسوّقي وتعلّمي؛ تجربة سلسة وتوصيل سريع جداً. أنصح الجميع بتجربتها!'},
+ {name:'سارة الحربي',role:'مصممة جرافيك',text:'الدورات هنا عملية وواضحة، والتقدم في كل دورة يتتبّع تلقائياً. أفضل استثمار قمت به هذا العام.'},
+ {name:'خالد المطيري',role:'مطوّر برمجيات',text:'واجهة عربية متميزة وتصميم عصري. لوحة التحكم تعطيني صورة واضحة عن كل شيء في ثوانٍ.'}
+];
+const ORDERS=[
+ {id:'#1042',cust:'نورة الزهراني',status:'مكتمل',cls:'st-ok'},
+ {id:'#1043',cust:'عبدالله الشمري',status:'قيد التجهيز',cls:'st-wait'},
+ {id:'#1044',cust:'ريم القحطاني',status:'مكتمل',cls:'st-ok'},
+ {id:'#1045',cust:'فهد العتيبي',status:'قيد التجهيز',cls:'st-wait'},
+ {id:'#1046',cust:'لمى السبيعي',status:'ملغي',cls:'st-cancel'}
+];
+const SALES=[4200,5100,4700,6900,7400,8200,9360];
+const DAYS=['السبت','الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة'];
+
+/* ================= الحالة ================= */
+let cart=JSON.parse(localStorage.getItem('mnsh_cart')||'[]');
+let user=JSON.parse(localStorage.getItem('mnsh_user')||'null');
+let theme=localStorage.getItem('mnsh_theme')||'light';
+if(theme==='dark')document.documentElement.setAttribute('data-theme','dark');
+
+/* ================= أدوات ================= */
+const $=s=>document.querySelector(s);
+const fmt=n=>n.toLocaleString('ar-EG')+' ر.س';
+function toast(msg){const t=document.createElement('div');t.className='toast';t.textContent=msg;$('#toasts').appendChild(t);setTimeout(()=>t.remove(),2800)}
+const stars=r=>'★'.repeat(Math.round(r))+'☆'.repeat(5-Math.round(r));
+
+/* ================= التنقل ================= */
+function go(page){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+page).classList.add('active');
+  document.querySelectorAll('[data-nav]').forEach(a=>a.classList.toggle('active',a.dataset.nav===page));
+  window.scrollTo({top:0,behavior:'smooth'});
+  $('#navLinks').classList.remove('open');
+  if(page==='dashboard'&&!user){toast('⚠️ سجّل الدخول لعرض لوحة التحكم');openAuth();return}
+}
+document.addEventListener('click',e=>{
+  const nav=e.target.closest('[data-nav]');
+  if(nav){e.preventDefault();go(nav.dataset.nav)}
+});
+$('#menuToggle').addEventListener('click',()=>$('#navLinks').classList.toggle('open'));
+
+/* ================= المنتجات ================= */
+function productCard(p){
+  return `<div class="card">
+    <div class="card-img" style="background:${p.bg}">${p.emoji}${p.old?'<span class="tag">خصم</span>':''}</div>
+    <div class="card-body">
+      <h4>${p.name}</h4>
+      <div class="rating">${stars(p.rating)} <span>(${p.reviews.toLocaleString('ar-EG')})</span></div>
+      <div class="price-row"><span class="price">${fmt(p.price)}${p.old?`<small>${fmt(p.old)}</small>`:''}</span>
+      <button class="add-btn" onclick="addToCart(${p.id})" title="أضف إلى السلة">+</button></div>
+    </div></div>`;
+}
+function renderFeatured(){$('#featuredProducts').innerHTML=PRODUCTS.filter(p=>p.id%2===1).slice(0,4).map(productCard).join('')}
+function renderShop(){
+  const q=($('#shopSearch').value||'').trim();
+  const cat=$('#shopChips .chip.active')?.dataset.cat||'all';
+  const list=PRODUCTS.filter(p=>(cat==='all'||p.cat===cat)&&(!q||p.name.includes(q)));
+  $('#shopGrid').innerHTML=list.length?list.map(productCard).join(''):'<p style="grid-column:1/-1;text-align:center;color:var(--muted);padding:40px">لا توجد نتائج مطابقة 🤷</p>';
+}
+$('#shopChips').innerHTML+=['إلكترونيات','موضة','المنزل'].map(c=>`<button class="chip" data-cat="${c}">${c}</button>`).join('');
+$('#shopChips').addEventListener('click',e=>{
+  const chip=e.target.closest('.chip');if(!chip)return;
+  $('#shopChips .chip').forEach(c=>c.classList.remove('active'));chip.classList.add('active');renderShop();
+});
+$('#shopSearch').addEventListener('input',renderShop);
+
+/* ================= الدورات ================= */
+function renderCourses(){
+  $('#coursesGrid').innerHTML=COURSES.map(c=>`
+  <div class="card course-card">
+    <div class="course-img" style="background:${c.color}22">${c.emoji}</div>
+    <div class="course-body">
+      <h4>${c.name}</h4>
+      <div class="meta"><span>📅 ${c.weeks} أسابيع</span><span>🎬 ${c.lessons} درساً</span><span>${stars(c.rating)} ${c.rating}</span><span>👥 ${c.students.toLocaleString('ar-EG')}</span></div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <div class="progress" style="flex:1"><i style="width:${c.progress}%"></i></div>
+        <span style="font-size:12.5px;color:var(--muted);font-weight:700">${c.progress}%</span>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:4px">
+        <button class="btn btn-primary btn-sm" style="flex:1;justify-content:center" onclick="toast('✅ تم تسجيلك في «${c.name}»')">سجّل الآن</button>
+      </div>
+    </div></div>`).join('');
+}
+
+/* ================= المدونة ================= */
+function renderBlog(){
+  $('#blogGrid').innerHTML=POSTS.map(p=>`
+  <div class="card blog-card">
+    <div class="card-img" style="background:linear-gradient(135deg,#ede9fe,#c7d2fe);font-size:44px">${p.emoji}</div>
+    <div class="card-body">
+      <div class="meta"><span>🏷️ ${p.cat}</span><span>📅 ${p.date}</span><span>⏱️ ${p.min} دقائق</span></div>
+      <h4>${p.title}</h4>
+      <p style="color:var(--muted);font-size:13.5px">${p.excerpt}</p>
+      <button class="btn btn-ghost btn-sm" style="margin-top:6px" onclick="toast('📖 سيتم فتح المقال كاملاً في النسخة الكاملة')">اقرأ المزيد</button>
+    </div></div>`).join('');
+}
+
+/* ================= الشهادات ================= */
+$('#testiGrid').innerHTML=TESTIMONIALS.map(t=>`
+  <div class="testi"><div class="stars">★★★★★</div><p>«${t.text}»</p>
+  <div class="t-user"><div class="avatar">${t.name[0]}</div><div><b>${t.name}</b><span>${t.role}</span></div></div></div>`).join('');
+
+/* ================= السلة ================= */
+function saveCart(){localStorage.setItem('mnsh_cart',JSON.stringify(cart));updateCartUI()}
+function updateCartUI(){
+  const n=cart.reduce((s,i)=>s+i.qty,0);
+  $('#cartCount').style.display=n?'grid':'none';$('#cartCount').textContent=n;
+  const total=cart.reduce((s,i)=>s+i.price*i.qty,0);
+  $('#cartTotal').textContent=fmt(total);
+  if(!cart.length){$('#cartBody').innerHTML='<div class="empty-cart">🛒<p style="font-size:15px;margin-top:8px">سلتك فارغة حالياً</p></div>';return}
+  $('#cartBody').innerHTML=cart.map(i=>`
+    <div class="cart-item">
+      <div class="ci-img" style="background:${PRODUCTS.find(p=>p.id===i.id).bg}">${i.emoji}</div>
+      <div><b>${i.name}</b><div class="ci-price">${fmt(i.price)}</div>
+      <div class="qty"><button onclick="qty(${i.id},-1)">−</button><b>${i.qty}</b><button onclick="qty(${i.id},1)">+</button></div></div>
+      <button class="ci-rm" onclick="removeItem(${i.id})">🗑️</button>
+    </div>`).join('');
+}
+function addToCart(id){const p=PRODUCTS.find(x=>x.id===id);const it=cart.find(x=>x.id===id);
+  if(it)it.qty++;else cart.push({id:p.id,name:p.name,price:p.price,emoji:p.emoji,qty:1});
+  saveCart();toast('🛒 تمت الإضافة إلى السلة');}
+function qty(id,d){const it=cart.find(x=>x.id===id);if(!it)return;it.qty+=d;if(it.qty<1)it.qty=1;saveCart()}
+function removeItem(id){cart=cart.filter(x=>x.id!==id);saveCart()}
+$('#cartBtn').addEventListener('click',()=>$('#cartDrawer').classList.add('open'));
+function closeCart(){$('#cartDrawer').classList.remove('open')}
+$('#closeCart').addEventListener('click',closeCart);
+$('#cartBackdrop').addEventListener('click',closeCart);
+$('#checkoutBtn').addEventListener('click',()=>{
+  if(!cart.length)return toast('⚠️ سلتك فارغة');
+  if(!user)return (closeCart(),toast('⚠️ سجّل الدخول لإتمام الطلب'),openAuth());
+  closeCart();cart=[];saveCart();toast('🎉 تم إرسال طلبك بنجاح! شكراً لثقتك بمنصّة');
+});
+
+/* ================= المصادقة ================= */
+let authMode='login';
+function openAuth(){$('#authModal').classList.add('open')}
+function closeAuth(){$('#authModal').classList.remove('open')}
+$('#authBtn').addEventListener('click',()=>{user?logout():openAuth()});
+$('#closeAuth').addEventListener('click',closeAuth);
+$('#authModal').addEventListener('click',e=>{if(e.target.id==='authModal')closeAuth()});
+$('#switchToReg').addEventListener('click',()=>{
+  authMode=authMode==='login'?'register':'login';
+  const reg=authMode==='register';
+  $('#authTitle').textContent=reg?'إنشاء حساب جديد':'تسجيل الدخول';
+  $('#authSub').textContent=reg?'أكمل بياناتك لتبدأ رحلتك مع منصّة':'أهلاً بعودتك! سجّل دخولك للمتابعة';
+  $('#authSubmit').textContent=reg?'إنشاء الحساب':'تسجيل الدخول';
+  $('#nameField').style.display=reg?'block':'none';
+  $('#authSwitch').innerHTML=reg?'لديك حساب بالفعل؟ <button id="switchToReg">تسجيل الدخول</button>':'ليس لديك حساب؟ <button id="switchToReg">إنشاء حساب جديد</button>';
+  $('#switchToReg').addEventListener('click',arguments.callee);
+});
+$('#authForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const email=$('#authEmail').value.trim(),pass=$('#authPass').value;
+  if(authMode==='register'){
+    const name=$('#regName').value.trim();
+    if(!name)return toast('⚠️ أدخل اسمك الكامل');
+    user={name,email,role:'user'};
+    localStorage.setItem('mnsh_user',JSON.stringify(user));
+    closeAuth();toast('🎉 تم إنشاء حسابك بنجاح!');updateAuthUI();return;
+  }
+  if(email==='admin@demo.com'&&pass==='admin'){user={name:'مدير المنصة',email,role:'admin'};localStorage.setItem('mnsh_user',JSON.stringify(user));closeAuth();toast('👋 أهلاً بك يا مدير المنصة!');updateAuthUI();return}
+  toast('❌ بيانات الدخول غير صحيحة — جرّب admin@demo.com / admin');
+});
+function logout(){user=null;localStorage.removeItem('mnsh_user');updateAuthUI();toast('👋 تم تسجيل الخروج بنجاح')}
+function updateAuthUI(){
+  const b=$('#authBtn');
+  if(user){b.textContent='👤 '+user.name+' · خروج';b.style.background='transparent';b.style.border='2px solid var(--primary)';b.style.color='var(--primary)'}
+  else{b.textContent='تسجيل الدخول';b.style.background='';b.style.border='';b.style.color=''}
+}
+$('#ctaJoin').addEventListener('click',()=>{authMode='register';$('#switchToReg').click();openAuth()});
+
+/* ================= المظهر ================= */
+$('#themeToggle').addEventListener('click',()=>{
+  const d=document.documentElement.getAttribute('data-theme')==='dark';
+  d?document.documentElement.removeAttribute('data-theme'):document.documentElement.setAttribute('data-theme','dark');
+  localStorage.setItem('mnsh_theme',d?'light':'dark');
+  $('#themeToggle').textContent=d?'🌙':'☀️';
+});
+if(theme==='dark')$('#themeToggle').textContent='☀️';
+
+/* ================= لوحة التحكم ================= */
+const max=Math.max(...SALES);
+$('#salesBars').innerHTML=SALES.map((v,i)=>`
+  <div class="bar"><i style="height:${Math.round(v/max*100)}%"></i><span>${DAYS[i]}</span></div>`).join('');
+$('#ordersBody').innerHTML=ORDERS.map(o=>`
+  <tr><td><b>${o.id}</b></td><td>${o.cust}</td><td><span class="status ${o.cls}">${o.status}</span></td></tr>`).join('');
+
+/* ================= تشغيل ================= */
+renderFeatured();renderShop();renderCourses();renderBlog();updateCartUI();updateAuthUI();
+</script>
+</body>
+</html>
